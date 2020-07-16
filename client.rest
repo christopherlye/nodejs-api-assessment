@@ -1,0 +1,24 @@
+GET http://localhost:9000/api/teachers
+
+###
+GET http://localhost:9000/api/teachers/teacher2@email.com
+
+###
+
+POST http://localhost:9000/api/teachers
+Content-Type: application/json
+
+{ 
+  "email": "teacher6@email.com" 
+}
+
+###
+PUT http://localhost:9000/api/teachers/teacher2@email.com
+Content-Type: application/json
+
+{
+  "email": "teacher2-updated@email.com"
+}
+
+###
+DELETE http://localhost:9000/api/teachers/teacher1@email.com
