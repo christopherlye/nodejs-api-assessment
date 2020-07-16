@@ -1,9 +1,9 @@
 const students = [
-  { email: "student1@email.com", teachers: [] },
-  { email: "student2@email.com", teachers: [] },
-  { email: "student3@email.com", teachers: [] },
-  { email: "student4@email.com", teachers: [] },
-  { email: "student5@email.com", teachers: [] },
+  { student: "student1@email.com", teachers: [], suspended: false },
+  { student: "student2@email.com", teachers: [], suspended: false },
+  { student: "student3@email.com", teachers: [], suspended: false },
+  { student: "student4@email.com", teachers: [], suspended: false },
+  { student: "student5@email.com", teachers: [], suspended: false },
 ];
 
 module.exports = students;
