@@ -2,12 +2,12 @@ const express = require("express");
 const teachersRouter = express.Router();
 const teachers = require("../models/teachers-models");
 
-// GET all teachers
+// GET: List all teachers
 teachersRouter.get("/", (req, res, next) => {
   res.json({ message: "All teachers", teachers });
 });
 
-// GET specific teacher
+// GET: List specific teacher
 teachersRouter.get("/:email", (req, res, next) => {
   const queriedTeacherEmail = req.params.email;
   const found = teachers.some((t) => t.email === queriedTeacherEmail);
@@ -24,7 +24,7 @@ teachersRouter.get("/:email", (req, res, next) => {
   }
 });
 
-// POST create a teacher
+// POST: create a teacher
 teachersRouter.post("/", (req, res, next) => {
   // check if teacher exists
   const newTeacher = req.body;
@@ -43,7 +43,7 @@ teachersRouter.post("/", (req, res, next) => {
   }
 });
 
-// PUT update a teacher
+// PUT: update a teacher
 teachersRouter.put("/:email", (req, res, next) => {
   const currentEmail = req.params.email;
   const updatedEmail = req.body.email;
@@ -67,7 +67,7 @@ teachersRouter.put("/:email", (req, res, next) => {
   }
 });
 
-// DELETE remove a teacher
+// DELETE: remove a teacher
 teachersRouter.delete("/:email", (req, res, next) => {
   // check if teacher exists
   const deleteTeacherEmail = req.params.email;
