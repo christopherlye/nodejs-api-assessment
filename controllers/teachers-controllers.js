@@ -4,18 +4,18 @@ const teachers = require("../models/teachers-models");
 
 // GET: List all teachers
 teachersRouter.get("/", (req, res, next) => {
-  res.json({ message: "All teachers", teachers });
+  res.json({ message: "All teachers", results: teachers });
 });
 
 // GET: List specific teacher
-teachersRouter.get("/:email", (req, res, next) => {
-  const queriedTeacherEmail = req.params.email;
-  const found = teachers.some((t) => t.email === queriedTeacherEmail);
+teachersRouter.get("/:teacher", (req, res, next) => {
+  const queriedTeacherEmail = req.params.teacher;
+  const found = teachers.some((t) => t.teacher === queriedTeacherEmail);
   if (found) {
-    const teacher = teachers.filter((t) => t.email === queriedTeacherEmail);
+    const teacher = teachers.filter((t) => t.teacher === queriedTeacherEmail);
     res.json({
       message: "Teacher found",
-      teacher: teacher,
+      results: teacher,
     });
   } else {
     res.json({
@@ -26,33 +26,38 @@ teachersRouter.get("/:email", (req, res, next) => {
 
 // POST: create a teacher
 teachersRouter.post("/", (req, res, next) => {
-  // check if teacher exists
-  const newTeacher = req.body;
-  const found = teachers.some((t) => t.email === newTeacher.email);
-  if (!found) {
-    teachers.push(newTeacher);
-    res.json({
-      message: "New teacher created",
-      new_teacher: newTeacher,
-      teachers,
-    });
+  // check if there is an email field
+  if (req.body.teacher) {
+    const newTeacher = req.body.teacher;
+    // check if teacher exists
+    const found = teachers.some((t) => t.teacher === newTeacher.teacher);
+    if (!found) {
+      teachers.push({ teacher: newTeacher, students: [], notification: "" });
+      res.json({
+        message: "New teacher created",
+        new_teacher: newTeacher,
+        results: teachers,
+      });
+    } else {
+      res.json({
+        message: `Teacher email: '${newTeacher.teacher}' already exists!`,
+      });
+    }
   } else {
-    res.json({
-      message: `Teacher email: '${newTeacher.email}' already exists!`,
-    });
+    res.json({ message: `Teacher email must be filled!` });
   }
 });
 
 // PUT: update a teacher
-teachersRouter.put("/:email", (req, res, next) => {
-  const currentEmail = req.params.email;
-  const updatedEmail = req.body.email;
-  const found = teachers.some((t) => t.email === currentEmail);
+teachersRouter.put("/:teacher", (req, res, next) => {
+  const currentEmail = req.params.teacher;
+  const updatedEmail = req.body.teacher;
+  const found = teachers.some((t) => t.teacher === currentEmail);
   if (found) {
-    const updatedTeachers = teachers.map((t) =>
-      t.email === currentEmail
-        ? { email: (t.email = updatedEmail) }
-        : { email: t.email }
+    teachers.map((t) =>
+      t.teacher === currentEmail
+        ? { teacher: (t.teacher = updatedEmail) }
+        : { teacher: t.teacher }
     );
     res.json({
       message: `Updated teacher`,
@@ -60,7 +65,7 @@ teachersRouter.put("/:email", (req, res, next) => {
         old: currentEmail,
         new: updatedEmail,
       },
-      teachers: updatedTeachers,
+      results: teachers,
     });
   } else {
     res.json({ message: `Teacher with ${currentEmail} not found!` });
@@ -68,20 +73,20 @@ teachersRouter.put("/:email", (req, res, next) => {
 });
 
 // DELETE: remove a teacher
-teachersRouter.delete("/:email", (req, res, next) => {
+teachersRouter.delete("/:teacher", (req, res, next) => {
   // check if teacher exists
-  const deleteTeacherEmail = req.params.email;
-  const found = teachers.some((t) => t.email === deleteTeacherEmail);
+  const deleteTeacherEmail = req.params.teacher;
+  const found = teachers.some((t) => t.teacher === deleteTeacherEmail);
   if (found) {
     // splice out the teacher that should be deleted
     teachers.splice(
-      teachers.findIndex((t) => t.email === deleteTeacherEmail),
+      teachers.findIndex((t) => t.teacher === deleteTeacherEmail),
       1
     );
     res.json({
       message: "Teacher deleted",
-      deleted_teacher_email: deleteTeacherEmail,
-      teachers,
+      deleted_teacher: deleteTeacherEmail,
+      results: teachers,
     });
   } else {
     res.json({

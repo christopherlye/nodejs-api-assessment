@@ -6,9 +6,12 @@ const PORT = process.env.PORT || 3000;
 // Middleware to parse incoming json
 app.use(express.json());
 
-// Middle ware to connect teachers & students routes
+// Middleware to connect teachers & students routes
 app.use("/api/teachers", require("./controllers/teachers-controllers"));
 app.use("/api/students", require("./controllers/students-controllers"));
+
+// Middleware to connect special routes
+app.use("/api", require("./controllers/special-controllers"));
 
 app.get("/", (req, res, next) => res.json({ message: "Server is working" }));
 
