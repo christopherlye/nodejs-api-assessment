@@ -10,17 +10,24 @@ specialRouter.get("/", (req, res, next) => {
 
 // POST: register one or more students to a specified teacher
 specialRouter.post("/register", (req, res, next) => {
-  const registerStudents = {
-    teacher: "teacher1@email.com",
-    students: ["student1@email.com", "student9@email.com"],
-  };
-  // find the teacher
+  const registerStudents = req.body;
+  // find the teacher you want to register students under
   const teacher = teachers.filter(
     (t) => t.teacher === registerStudents.teacher
   )[0];
-  // update the students if not already there
-
-  res.json({ message: `Students registered for ${registerStudents.teacher}` });
+  const difference = registerStudents.students.filter(
+    (regS) => !teacher.students.includes(regS)
+  );
+  difference.forEach((s) => teacher.students.push(s));
+  if (!difference.length) {
+    return res.json({
+      message: `Requested students have already been registered to the ${registerStudents.teacher}`,
+    });
+  }
+  res.json({
+    message: `${difference.length} students registered for ${registerStudents.teacher}`,
+    teacher,
+  });
 });
 
 // GET: retrieve a list of students common to a given list of teachers
