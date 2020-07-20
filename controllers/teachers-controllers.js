@@ -5,7 +5,7 @@ const students = require("../models/students-models");
 
 // GET: List all teachers
 teachersRouter.get("/", (req, res, next) => {
-  res.json({ message: "All teachers", results: teachers });
+  res.status(200).json({ message: "All teachers", results: teachers });
 });
 
 // GET: List specific teacher
@@ -14,12 +14,12 @@ teachersRouter.get("/:teacher", (req, res, next) => {
   const found = teachers.some((t) => t.teacher === queriedTeacherEmail);
   if (found) {
     const teacher = teachers.filter((t) => t.teacher === queriedTeacherEmail);
-    res.json({
+    res.status(200).json({
       message: "Teacher found",
       results: teacher,
     });
   } else {
-    res.json({
+    res.status(404).json({
       message: "Teacher not found",
     });
   }
@@ -34,18 +34,18 @@ teachersRouter.post("/", (req, res, next) => {
     const found = teachers.some((t) => t.teacher === newTeacher.teacher);
     if (!found) {
       teachers.push({ teacher: newTeacher, students: [], notification: "" });
-      res.json({
+      res.status(201).json({
         message: "New teacher created",
         new_teacher: newTeacher,
         results: teachers,
       });
     } else {
-      res.json({
+      res.status(400).json({
         message: `Teacher email: '${newTeacher.teacher}' already exists!`,
       });
     }
   } else {
-    res.json({ message: `Teacher email must be filled!` });
+    res.status(400).json({ message: `Teacher email must be filled!` });
   }
 });
 
@@ -62,7 +62,7 @@ teachersRouter.put("/:teacher", (req, res, next) => {
     );
     // Note: should update the connected teacher in the students DB too!
 
-    res.json({
+    res.status(201).json({
       message: `Updated teacher`,
       updated_teacher: {
         old: currentEmail,
@@ -71,7 +71,9 @@ teachersRouter.put("/:teacher", (req, res, next) => {
       results: teachers,
     });
   } else {
-    res.json({ message: `Teacher with ${currentEmail} not found!` });
+    res
+      .status(404)
+      .json({ message: `Teacher with ${currentEmail} not found!` });
   }
 });
 
@@ -89,13 +91,13 @@ teachersRouter.delete("/:teacher", (req, res, next) => {
     );
     // Note: should remove the connected teacher in the students DB too!
 
-    res.json({
+    res.status(201).json({
       message: "Teacher deleted",
       deleted_teacher: deleteTeacherEmail,
       results: teachers,
     });
   } else {
-    res.json({
+    res.status(404).json({
       message: `Teacher email: '${deleteTeacherEmail}' does not exist!`,
     });
   }
