@@ -1,7 +1,7 @@
 <h1 align="center">NodeJS API Assessment</h1>
 <p align="center">NodeJS API Assessment : A technical assessment on nodeJS and mySQL</p>
 <br>
-<p align="center"><img src="#" alt="NodeJS API Assessment" width="100%"></p>
+<p align="center"><img src="https://github.com/christopherlye/nodejs-api-assessment/blob/master/highlight.png" alt="NodeJS API Assessment" width="100%"></p>
 
 ---
 
