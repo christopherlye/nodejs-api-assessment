@@ -17,6 +17,8 @@ const students = [
   { student: "student4@email.com", teachers: [], suspended: false },
   { student: "student5@email.com", teachers: [], suspended: false },
   { student: "studentmary@gmail.com", teachers: [], suspended: false },
+  { student: "studentagnes@gmail.com", teachers: [], suspended: false },
+  { student: "studentmiche@gmail.com", teachers: [], suspended: true },
 ];
 
 module.exports = students;
