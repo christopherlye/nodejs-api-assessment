@@ -2,9 +2,17 @@ const express = require("express");
 const teachersRouter = express.Router();
 const teachers = require("../models/teachers-models");
 const students = require("../models/students-models");
+const mysqlConnection = require("../connection");
 
 // GET: List all teachers
 teachersRouter.get("/", (req, res, next) => {
+  mysqlConnection.query("SELECT * FROM teachers", (err, rows, fields) => {
+    if (!err) {
+      console.log(rows);
+    } else {
+      console.log(err);
+    }
+  });
   res.status(200).json({ message: "All teachers", results: teachers });
 });
 
