@@ -22,6 +22,7 @@ In summary:
 3. Create special routes
    - /api/register
    - /api/commonstudents
+   - /api/suspend
    - /api/retrievefornotifications
 4. Explore & connect to MySQL and ensure data is saved & persists for each route
 5. Explore and include unit tests using Jest
@@ -80,6 +81,27 @@ Step 6: Run server
 ```
 npm start
 ```
+
+## API Routes
+
+### Teacher & Student CRUD Routes
+
+| Method | Route                  | Description                                        | Request / Request Body Example                          |
+| ------ | ---------------------- | -------------------------------------------------- | ------------------------------------------------------- |
+| GET    | /api/teachers          | Retrieve the list of all teachers                  | `http://localhost:9000/api/teachers`                    |
+| GET    | /api/teachers/:teacher | Retrieve a specific teacher by the teacher's email | `http://localhost:9000/api/teachers/teacher1@email.com` |
+| POST   | /api/teachers/         | Create a new teacher record                        | `{ "teacher" : "teacher6@email.com" }`                  |
+| PUT    | /api/teachers/:teacher | Update a specific teacher                          | `{ "teacher" : "teacher1-updated@email.com" }`          |
+| DELETE | /api/teachers/:teacher | Delete a specific teacher                          | `http://localhost:9000/api/teachers/teacher4@email.com` |
+
+### Special Routes
+
+| Method | Route                         | Description                                                                                                                                                                       | Request / Request Body Example                                                                                                                                                                                            |
+| ------ | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| POST   | /api/register                 | 1. As a teacher, I want to register one or more students to a specified teacher. A teacher can register multiple students. A student can also be registered to multiple teachers. | `{ "teacher": "teacherken@gmail.com" "students": [ "studentjon@gmail.com", "studenthon@gmail.com" ] }`                                                                                                                    |
+| GET    | /api/commonstudents           | 2. As a teacher, I want to retrieve a list of students common to a given list of teachers (i.e. retrieve students who are registered to ALL of the given teachers).               | Example 1: `/api/commonstudents?teacher=teacherken%40gmail.com` Example 2: `/api/commonstudents?teacher=teacherken%40gmail.com&teacher=teacherjoe%40gmail.com`                                                            |
+| POST   | /api/suspend                  | 3. As a teacher, I want to suspend a specified student.                                                                                                                           | `{ "student" : "studentmary@gmail.com" }`                                                                                                                                                                                 |
+| POST   | /api/retrievefornotifications | 4. As a teacher, I want to retrieve a list of students who can receive a given notification.                                                                                      | Example 1: `{ "teacher": "teacherken@gmail.com", "notification": "Hello students! @studentagnes@gmail.com @studentmiche@gmail.com" }` Example 2: `{ "teacher": "teacherken@gmail.com", "notification": "Hey everybody" }` |
 
 ---
 
