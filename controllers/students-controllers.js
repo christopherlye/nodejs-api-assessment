@@ -79,6 +79,7 @@ studentsRouter.delete("/:student", (req, res, next) => {
   const found = students.some((s) => s.student === deleteStudent);
   if (found) {
     // splice out the student that should be deleted
+    // Note: should remove the connected student in the teachers DB too!
     students.splice(
       students.findIndex((s) => s.student === deleteStudent),
       1

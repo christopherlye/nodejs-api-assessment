@@ -11,20 +11,46 @@ specialRouter.get("/", (req, res, next) => {
 // POST: register one or more students to a specified teacher
 specialRouter.post("/register", (req, res, next) => {
   const registerStudents = req.body;
-  // find the teacher you want to register students under
-  const teacher = teachers.filter(
-    (t) => t.teacher === registerStudents.teacher
-  )[0];
+  // Step 1: Find the teacher you want to register students under
+  const teacher = teachers.find((t) => t.teacher === registerStudents.teacher);
+  // Step 2: Check if teacher exists
+  if (!teacher)
+    return res.json({
+      message: `Teacher ${registerStudents.teacher} does not exist!`,
+    });
+  // Step 3: Determine the differences in the arrays
   const difference = registerStudents.students.filter(
     (regS) => !teacher.students.includes(regS)
   );
-  difference.forEach((s) => teacher.students.push(s));
+
+  // Step 4: If there is no difference, do not append
   if (!difference.length) {
     return res.json({
       message: `Requested students have already been registered to the ${registerStudents.teacher}`,
     });
   }
-  // should register teacher with the students too
+  // Step 5: Append the differences to the original array
+  difference.forEach((s) => teacher.students.push(s));
+
+  // Step 6: Check if registered students currently exists in students DB.
+  // if exists, append the teacher
+  students.map((s) => {
+    if (teacher.students.includes(s.student)) {
+      s.teachers.push(teacher.teacher);
+    }
+  });
+  // if doesn't exist, append the new student
+  teacher.students.map((s) => {
+    students.every((student) => student.student !== s)
+      ? students.push({
+          student: s,
+          teachers: [teacher.teacher],
+          suspended: false,
+        })
+      : null;
+  });
+  console.log(students);
+
   res.json({
     message: `${difference.length} students registered for ${registerStudents.teacher}`,
     teacher,
