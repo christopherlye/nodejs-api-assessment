@@ -113,6 +113,7 @@ npm start
 - Explore using JEST for unit testing
 - Explore using Sequelize over using mysql
 - Explore Mocha & Chai
+- Explore Knex.js
 - Deepen knowledge of sql and backend in general
 - Create seed data for user that automatically creates the database, tables and records
 
