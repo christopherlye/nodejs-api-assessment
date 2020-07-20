@@ -59,6 +59,7 @@ studentsRouter.put("/:student", (req, res, next) => {
         ? { student: (s.student = updated) }
         : { student: s.student }
     );
+    // Note: should update the connected student in the teachers DB too!
     res.json({
       message: `Updated student`,
       updated_student: {
@@ -79,11 +80,11 @@ studentsRouter.delete("/:student", (req, res, next) => {
   const found = students.some((s) => s.student === deleteStudent);
   if (found) {
     // splice out the student that should be deleted
-    // Note: should remove the connected student in the teachers DB too!
     students.splice(
       students.findIndex((s) => s.student === deleteStudent),
       1
     );
+    // Note: should remove the connected student in the teachers DB too!
     res.json({
       message: "Student deleted",
       deleted_student: deleteStudent,

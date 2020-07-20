@@ -1,6 +1,7 @@
 const express = require("express");
 const teachersRouter = express.Router();
 const teachers = require("../models/teachers-models");
+const students = require("../models/students-models");
 
 // GET: List all teachers
 teachersRouter.get("/", (req, res, next) => {
@@ -59,6 +60,8 @@ teachersRouter.put("/:teacher", (req, res, next) => {
         ? { teacher: (t.teacher = updatedEmail) }
         : { teacher: t.teacher }
     );
+    // Note: should update the connected teacher in the students DB too!
+
     res.json({
       message: `Updated teacher`,
       updated_teacher: {
@@ -80,11 +83,12 @@ teachersRouter.delete("/:teacher", (req, res, next) => {
   if (found) {
     // splice out the teacher that should be deleted
 
-    // Note: should remove the connected teacher in the students DB too!
     teachers.splice(
       teachers.findIndex((t) => t.teacher === deleteTeacherEmail),
       1
     );
+    // Note: should remove the connected teacher in the students DB too!
+
     res.json({
       message: "Teacher deleted",
       deleted_teacher: deleteTeacherEmail,
