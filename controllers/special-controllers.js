@@ -75,6 +75,26 @@ specialRouter.get("/commonstudents", (req, res, next) => {
 });
 
 // POST: suspend a specified student
+specialRouter.post("/suspend", (req, res, next) => {
+  const suspendedStudent = req.body.student;
+  // Step 1: Check if student exists
+  const studentExists = students.find((s) => s.student === suspendedStudent);
+  if (!studentExists)
+    return res.json({ message: `Student ${suspendedStudent} does not exist!` });
+  // Step 2: Check if student is already suspended
+  const studentSuspended = students.find((s) => s.suspended === true);
+  if (studentSuspended)
+    return res.json({
+      message: `Student ${suspendedStudent} already suspended!`,
+    });
+  // Step 3: Suspend the student if above conditions are met
+  for (let idx in students) {
+    if (students[idx].student === suspendedStudent) {
+      students[idx].suspended = true;
+      return res.status(204).end();
+    }
+  }
+});
 
 // POST: retrieve a list of students who can receive a given notification
 
