@@ -1,8 +1,9 @@
 const express = require("express");
 const app = express();
 require("dotenv").config();
-const PORT = process.env.PORT || 3000;
+// const PORT = process.env.PORT || 3000;
 const mysqlConnection = require("./connection");
+const { PORT } = require("./config");
 
 // Middleware to parse incoming json
 app.use(express.json());

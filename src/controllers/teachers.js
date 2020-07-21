@@ -2,7 +2,7 @@ const express = require("express");
 const teachersRouter = express.Router();
 const teachers = require("../../mocks/teachers");
 const students = require("../../mocks/students");
-const mysqlConnection = require("../../connection");
+const mysqlConnection = require("../connection");
 
 // GET: List all teachers
 teachersRouter.get("/", (req, res, next) => {
