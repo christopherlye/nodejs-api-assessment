@@ -8,11 +8,11 @@ const mysqlConnection = require("./connection");
 app.use(express.json());
 
 // Middleware to connect teachers & students routes
-app.use("/api/teachers", require("./controllers/teachers-controllers"));
-app.use("/api/students", require("./controllers/students-controllers"));
+app.use("/api/teachers", require("./controllers/teachers"));
+app.use("/api/students", require("./controllers/students"));
 
 // Middleware to connect special routes
-app.use("/api", require("./controllers/special-controllers"));
+app.use("/api", require("./controllers/api"));
 
 app.get("/", (req, res, next) => res.json({ message: "Server is working" }));
 

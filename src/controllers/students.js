@@ -1,6 +1,6 @@
 const express = require("express");
 const studentsRouter = express.Router();
-const students = require("../models/students-models");
+const students = require("../../mocks/students");
 
 // GET: List all students
 studentsRouter.get("/", (req, res, next) => {

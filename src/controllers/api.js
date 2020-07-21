@@ -1,7 +1,7 @@
 const express = require("express");
 const specialRouter = express.Router();
-const teachers = require("../models/teachers-models");
-const students = require("../models/students-models");
+const teachers = require("../../mocks/teachers");
+const students = require("../../mocks/students");
 
 // GET: test special route
 specialRouter.get("/", (req, res, next) => {
