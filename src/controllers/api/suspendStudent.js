@@ -12,8 +12,10 @@ const suspendStudent = (req, res, next) => {
     return res.status(404).json(resp);
   }
   // Step 2: Check if student is already suspended
-  const studentSuspended = students.find((s) => s.suspended === true);
-  if (studentSuspended) {
+  const alreadySuspended = students.find(
+    (s) => s.student === suspendedStudent && s.suspended === true
+  );
+  if (alreadySuspended) {
     const resp = {
       message: `Student ${suspendedStudent} already suspended!`,
     };

@@ -1,4 +1,5 @@
 const teachers = require("../../../mocks/teachers");
+const mysqlConnection = require("../../connection");
 
 // GET: List all teachers
 const getAllTeachers = (req, res, next) => {
