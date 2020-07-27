@@ -1,4 +1,4 @@
-const mysql = require("mysql");
+import mysql from "mysql";
 
 let mysqlConnection = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -17,4 +17,4 @@ mysqlConnection.connect((err) => {
   }
 });
 
-module.exports = mysqlConnection;
+export { mysqlConnection };

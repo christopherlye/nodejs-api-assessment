@@ -1,9 +1,5 @@
-const students = require("./students");
-const teachers = require("./teachers");
-const api = require("./api");
+import * as students from "./students/index.js";
+import * as teachers from "./teachers/index.js";
+import * as api from "./api/index.js";
 
-module.exports = {
-  students,
-  teachers,
-  api,
-};
+export { students, teachers, api };

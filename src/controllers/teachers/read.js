@@ -1,5 +1,5 @@
-const teachers = require("../../../mocks/teachers");
-const mysqlConnection = require("../../connection");
+import teachers from "../../../mocks/teachers.js";
+import { mysqlConnection } from "../../connection.js";
 
 // GET: List all teachers
 const getAllTeachers = (req, res, next) => {
@@ -30,7 +30,4 @@ const getOneTeacher = (req, res, next) => {
   }
 };
 
-module.exports = {
-  getAllTeachers,
-  getOneTeacher,
-};
+export { getAllTeachers, getOneTeacher };

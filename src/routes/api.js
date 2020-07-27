@@ -1,7 +1,7 @@
-const { Router } = require("express");
-const { api } = require("../controllers");
+import express from "express";
+import * as api from "../controllers/api/index.js";
 
-const router = Router();
+const router = express.Router();
 
 router.route("/register").post(api.registerStudents);
 
@@ -11,4 +11,4 @@ router.route("/suspend").post(api.suspendStudent);
 
 router.route("/retrievefornotifications").post(api.retrieveNotifList);
 
-module.exports = router;
+export { router };

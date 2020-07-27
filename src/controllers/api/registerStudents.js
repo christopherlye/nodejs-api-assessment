@@ -1,5 +1,5 @@
-const teachers = require("../../../mocks/teachers");
-const students = require("../../../mocks/students");
+import teachers from "../../../mocks/teachers.js";
+import students from "../../../mocks/students.js";
 
 // POST: register one or more students to a specified teacher
 const registerStudents = (req, res, next) => {
@@ -56,4 +56,4 @@ const registerStudents = (req, res, next) => {
   res.status(204).end();
 };
 
-module.exports = registerStudents;
+export { registerStudents };

@@ -1,7 +1,7 @@
-const { Router } = require("express");
-const { teachers } = require("../controllers");
+import express from "express";
+import { teachers } from "../controllers/index.js";
 
-const router = Router();
+const router = express.Router();
 
 router.route("/").get(teachers.getAllTeachers).post(teachers.createTeacher);
 
@@ -11,4 +11,4 @@ router
   .put(teachers.updateTeacher)
   .delete(teachers.deleteTeacher);
 
-module.exports = router;
+export { router };

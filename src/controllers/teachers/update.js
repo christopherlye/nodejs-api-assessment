@@ -1,4 +1,4 @@
-const teachers = require("../../../mocks/teachers");
+import teachers from "../../../mocks/teachers.js";
 
 // PUT: update a teacher
 const updateTeacher = (req, res, next) => {
@@ -28,4 +28,4 @@ const updateTeacher = (req, res, next) => {
   }
 };
 
-module.exports = updateTeacher;
+export { updateTeacher };

@@ -21,4 +21,4 @@ const students = [
   { student: "studentmiche@gmail.com", teachers: [], suspended: true },
 ];
 
-module.exports = students;
+export default students;

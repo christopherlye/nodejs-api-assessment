@@ -1,4 +1,4 @@
-const students = require("../../../mocks/students");
+import students from "../../../mocks/students.js";
 
 // POST: create a student
 const createStudent = (req, res, next) => {
@@ -24,4 +24,4 @@ const createStudent = (req, res, next) => {
   }
 };
 
-module.exports = createStudent;
+export { createStudent };

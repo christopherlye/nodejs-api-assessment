@@ -1,4 +1,4 @@
-const students = require("../../../mocks/students");
+import students from "../../../mocks/students.js";
 
 // DELETE: remove a student
 const deleteStudent = (req, res, next) => {
@@ -24,4 +24,4 @@ const deleteStudent = (req, res, next) => {
   }
 };
 
-module.exports = deleteStudent;
+export { deleteStudent };

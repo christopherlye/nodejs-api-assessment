@@ -1,9 +1,9 @@
-const getCommonStudents = require("./getCommonStudents");
-const registerStudents = require("./registerStudents");
-const retrieveNotifList = require("./retrieveNotifList");
-const suspendStudent = require("./suspendStudent");
+import { getCommonStudents } from "./getCommonStudents.js";
+import { registerStudents } from "./registerStudents.js";
+import { retrieveNotifList } from "./retrieveNotifList.js";
+import { suspendStudent } from "./suspendStudent.js";
 
-module.exports = {
+export {
   getCommonStudents,
   registerStudents,
   retrieveNotifList,

@@ -1,8 +1,8 @@
-const express = require("express");
+import express from "express";
 const app = express();
-const { PORT } = require("./config");
-const { teachersRoutes, studentsRoutes, apiRoutes } = require("./routes");
-const mysqlConnection = require("./connection");
+import { PORT } from "./config/index.js";
+import { teachersRoutes, studentsRoutes, apiRoutes } from "./routes/index.js";
+import { mysqlConnection } from "./connection.js";
 
 // Middleware to parse incoming json
 app.use(express.json());

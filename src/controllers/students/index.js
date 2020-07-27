@@ -1,9 +1,9 @@
-const createStudent = require("./create");
-const { getAllStudents, getOneStudent } = require("./read");
-const updateStudent = require("./update");
-const deleteStudent = require("./delete");
+import { createStudent } from "./create.js";
+import { getAllStudents, getOneStudent } from "./read.js";
+import { updateStudent } from "./update.js";
+import { deleteStudent } from "./delete.js";
 
-module.exports = {
+export {
   createStudent,
   getAllStudents,
   getOneStudent,

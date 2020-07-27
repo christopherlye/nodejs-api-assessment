@@ -1,9 +1,5 @@
-const teachersRoutes = require("./teachers");
-const studentsRoutes = require("./students");
-const apiRoutes = require("./api");
+import { router as teachersRoutes } from "./teachers.js";
+import { router as studentsRoutes } from "./students.js";
+import { router as apiRoutes } from "./api.js";
 
-module.exports = {
-  teachersRoutes,
-  studentsRoutes,
-  apiRoutes,
-};
+export { teachersRoutes, studentsRoutes, apiRoutes };

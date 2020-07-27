@@ -1,4 +1,4 @@
-const students = require("../../../mocks/students");
+import students from "../../../mocks/students.js";
 
 // GET: List all students
 const getAllStudents = (req, res, next) => {
@@ -22,7 +22,4 @@ const getOneStudent = (req, res, next) => {
   }
 };
 
-module.exports = {
-  getAllStudents,
-  getOneStudent,
-};
+export { getAllStudents, getOneStudent };

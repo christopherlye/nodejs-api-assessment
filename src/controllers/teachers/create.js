@@ -1,4 +1,4 @@
-const teachers = require("../../../mocks/teachers");
+import teachers from "../../../mocks/teachers.js";
 
 // POST: create a teacher
 const createTeacher = (req, res, next) => {
@@ -24,4 +24,4 @@ const createTeacher = (req, res, next) => {
   }
 };
 
-module.exports = createTeacher;
+export { createTeacher };

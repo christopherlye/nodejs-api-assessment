@@ -24,4 +24,4 @@ const teachers = [
   },
 ];
 
-module.exports = teachers;
+export default teachers;

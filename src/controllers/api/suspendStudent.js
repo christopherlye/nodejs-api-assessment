@@ -1,5 +1,5 @@
-const teachers = require("../../../mocks/teachers");
-const students = require("../../../mocks/students");
+import teachers from "../../../mocks/teachers.js";
+import students from "../../../mocks/students.js";
 
 // POST: suspend a specified student
 const suspendStudent = (req, res, next) => {
@@ -36,4 +36,4 @@ const suspendStudent = (req, res, next) => {
   }
 };
 
-module.exports = suspendStudent;
+export { suspendStudent };

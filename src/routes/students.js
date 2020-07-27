@@ -1,7 +1,7 @@
-const { Router } = require("express");
-const { students } = require("../controllers");
+import express from "express";
+import { students } from "../controllers/index.js";
 
-const router = Router();
+const router = express.Router();
 
 router.route("/").get(students.getAllStudents).post(students.createStudent);
 
@@ -11,4 +11,4 @@ router
   .put(students.updateStudent)
   .delete(students.deleteStudent);
 
-module.exports = router;
+export { router };

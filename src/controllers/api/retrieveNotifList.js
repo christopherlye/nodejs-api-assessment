@@ -1,5 +1,5 @@
-const teachers = require("../../../mocks/teachers");
-const students = require("../../../mocks/students");
+import teachers from "../../../mocks/teachers.js";
+import students from "../../../mocks/students.js";
 
 // POST: retrieve a list of students who can receive a given notification
 const retrieveNotifList = (req, res, next) => {
@@ -43,4 +43,4 @@ const retrieveNotifList = (req, res, next) => {
   res.status(200).json(resp);
 };
 
-module.exports = retrieveNotifList;
+export { retrieveNotifList };

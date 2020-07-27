@@ -1,5 +1,5 @@
-const teachers = require("../../../mocks/teachers");
-const students = require("../../../mocks/students");
+import teachers from "../../../mocks/teachers.js";
+import students from "../../../mocks/students.js";
 
 // GET: retrieve a list of students common to a given list of teachers
 const getCommonStudents = (req, res, next) => {
@@ -51,4 +51,4 @@ const getCommonStudents = (req, res, next) => {
   }
 };
 
-module.exports = getCommonStudents;
+export { getCommonStudents };

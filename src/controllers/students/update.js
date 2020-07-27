@@ -1,5 +1,4 @@
-const students = require("../../../mocks/students");
-const createStudent = require("./create");
+import students from "../../../mocks/students.js";
 
 // PUT: update a student
 const updateStudent = (req, res, next) => {
@@ -26,4 +25,4 @@ const updateStudent = (req, res, next) => {
   }
 };
 
-module.exports = updateStudent;
+export { updateStudent };
